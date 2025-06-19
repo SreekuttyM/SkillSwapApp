@@ -13,7 +13,7 @@ struct AppView: View {
     var body: some View {
         AppBuilderView(
             showHome: appState.showHome, onboardingView: {
-                OnboardingView()
+                OnBoardingView()
             }, homeView: {
                 HomeView()
             })

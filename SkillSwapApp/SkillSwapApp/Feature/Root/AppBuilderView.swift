@@ -16,10 +16,10 @@ struct AppBuilderView<OnboardingView : View,HomeView : View>: View {
         ZStack {
             if showHome {
                 homeView
-                .transition(.move(edge: .leading))
+                    .transition(.move(edge: .trailing))
             } else {
                 onboardingView
-                .transition(.move(edge: .trailing))
+                .transition(.move(edge: .leading))
             }
         }
         .animation(.smooth, value: showHome)
