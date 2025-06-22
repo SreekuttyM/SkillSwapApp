@@ -7,13 +7,19 @@
 
 import SwiftUI
 
-struct AppBuilderView<OnboardingView : View,HomeView : View>: View {
+struct AppBuilderView<OnboardingView : View,HomeView : View,UserAuthenticationScreen :View>: View {
     var showHome : Bool
+    @State var isUserLoggedIn : Bool
+
     @ViewBuilder var onboardingView : OnboardingView
     @ViewBuilder var homeView : HomeView
+    @ViewBuilder var userAuthenticationView : UserAuthenticationScreen
 
     var body: some View {
         ZStack {
+            if isUserLoggedIn {
+                EmptyView()
+            }
             if showHome {
                 homeView
                     .transition(.move(edge: .trailing))
@@ -24,6 +30,9 @@ struct AppBuilderView<OnboardingView : View,HomeView : View>: View {
         }
         .animation(.smooth, value: showHome)
         .ignoresSafeArea()
+        .fullScreenCover(isPresented: $isUserLoggedIn) {
+            UserAuthenticationView()
+        }
     }
 }
 
@@ -31,9 +40,9 @@ private struct PreviewView: View {
     @State var showHome: Bool = false
     
     var body: some View {
-        AppBuilderView(
-            showHome: true,
-            onboardingView: {
+        AppBuilderView(showHome: true,
+                       isUserLoggedIn:true,
+                       onboardingView: {
             ZStack {
                 Color.red
                 Text("Tab bar")
@@ -42,6 +51,12 @@ private struct PreviewView: View {
             ZStack {
                 Color.blue
                 Text("Onboarding")
+                
+            }
+        }, userAuthenticationView: {
+            ZStack {
+                Color.yellow
+                Text("User Auth")
                 
             }
         })

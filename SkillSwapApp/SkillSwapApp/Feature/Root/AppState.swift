@@ -9,6 +9,9 @@
 import Foundation
 @Observable
 class AppState {
+    
+    private(set) var isUserAuthorized: Bool = false
+    
     private(set) var showHome: Bool  {
         didSet {
             UserDefaults.showHome = showHome
