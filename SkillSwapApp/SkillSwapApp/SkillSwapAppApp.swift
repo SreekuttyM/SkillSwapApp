@@ -2,7 +2,7 @@
 //  SkillSwapAppApp.swift
 //  SkillSwapApp
 //
-//  Created by Sreekutty Maya on 19/06/2025.
+//  Created by Sreekutty Maya on 22/06/2025.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct SkillSwapAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView()
         }
     }
 }

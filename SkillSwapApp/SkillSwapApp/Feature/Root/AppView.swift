@@ -11,12 +11,13 @@ struct AppView: View {
     @State var appState : AppState = AppState()
     
     var body: some View {
-        AppBuilderView(
-            showHome: appState.showHome, onboardingView: {
-                OnboardingView()
-            }, homeView: {
-                HomeView()
-            })
+        AppBuilderView(showHome: appState.showHome, isUserLoggedIn: appState.isUserAuthorized, onboardingView: {
+            OnBoardingView()
+        }, homeView: {
+            HomeView()
+        }, userAuthenticationView: {
+            UserAuthenticationView()
+        })
         .environment(appState)
     }
 }
