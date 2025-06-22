@@ -23,10 +23,12 @@ struct OnBoardingView: View {
                     .tag (4)
             }
             .tabViewStyle(.page)
-            .edgesIgnoringSafeArea(.all)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .padding(.bottom, 20)
             .overlay(alignment:.bottomTrailing) {
                 SkipButton
             }
+        
     }
 
     private var SkipButton : some View {
@@ -41,7 +43,7 @@ struct OnBoardingView: View {
                     }
                 }
                 .bold()
-                .padding()
+                .padding(.all,40)
             }
     }
     
@@ -69,4 +71,5 @@ struct OnBoardingView: View {
 
 #Preview {
     OnBoardingView()
+        .environment(AppState())
 }

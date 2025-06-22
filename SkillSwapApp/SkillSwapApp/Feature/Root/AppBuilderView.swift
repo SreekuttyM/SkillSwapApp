@@ -17,12 +17,13 @@ struct AppBuilderView<OnboardingView : View,HomeView : View,UserAuthenticationSc
 
     var body: some View {
         ZStack {
-            if isUserLoggedIn {
-                EmptyView()
-            }
             if showHome {
-                homeView
-                    .transition(.move(edge: .trailing))
+                if !isUserLoggedIn {
+                    UserAuthenticationView()
+                } else {
+                    homeView
+                        .transition(.move(edge: .trailing))
+                }
             } else {
                 onboardingView
                 .transition(.move(edge: .leading))
@@ -30,9 +31,7 @@ struct AppBuilderView<OnboardingView : View,HomeView : View,UserAuthenticationSc
         }
         .animation(.smooth, value: showHome)
         .ignoresSafeArea()
-        .fullScreenCover(isPresented: $isUserLoggedIn) {
-            UserAuthenticationView()
-        }
+        
     }
 }
 
