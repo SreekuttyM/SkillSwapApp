@@ -12,7 +12,7 @@ class AppState {
     
     private(set) var isUserAuthorized: Bool {
         didSet {
-            UserDefaults.showHome = showHome
+            UserDefaults.isUserAuthorized = isUserAuthorized
         }
     }
     

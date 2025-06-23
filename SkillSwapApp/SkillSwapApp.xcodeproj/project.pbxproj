@@ -102,6 +102,7 @@
 				4D0A70C32E07F6CA005F048E /* Sources */,
 				4D0A70C42E07F6CA005F048E /* Frameworks */,
 				4D0A70C52E07F6CA005F048E /* Resources */,
+				4D9AE7772E09DD4500644D82 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -230,6 +231,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D9AE7772E09DD4500644D82 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/SkillSwapApp",
+				"$(SRCROOT)/.swiftlint.yml",
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Exit early if SwiftUI preview is running\nif [[ \"$XCODE_RUNNING_FOR_PREVIEWS\" == \"1\" ]]; then\n    echo \"SwiftUI preview detected — skipping SwiftLint\"\n    exit 0\nfi\n\n# Skip in CI\nif [[ -n \"$CI\" ]]; then\n    echo \"Running in CI — skipping SwiftLint\"\n    exit 0\nfi\n\n# ARM64 path fix (M1/M2)\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\n# Run SwiftLint\nif which swiftlint > /dev/null; then\n    swiftlint --fix || echo \"SwiftLint fix failed\"\n    swiftlint || echo \"SwiftLint run failed\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D0A70C32E07F6CA005F048E /* Sources */ = {
