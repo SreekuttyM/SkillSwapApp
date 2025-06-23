@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppBuilderView<OnboardingView : View,HomeView : View,UserAuthenticationScreen :View>: View {
     var showHome : Bool
-    @State var isUserLoggedIn : Bool
+    var isUserLoggedIn : Bool
 
     @ViewBuilder var onboardingView : OnboardingView
     @ViewBuilder var homeView : HomeView
